@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, ImageBackground } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
 
 
 interface PropCliente {
@@ -14,6 +14,13 @@ export default function Cliente({ id, nome, cpf, saldo }: PropCliente) {
      
 
     <View style={styles.card}>
+
+      <Image
+            source={require('../assets/img/UsuIcon.png')}
+            style={styles.imgUsuario}
+              
+      />
+
       <Text style={styles.text}>Cod.: {id}</Text>
       <Text style={styles.text}>Nome: {nome}</Text>
       <Text style={styles.text}>CPF: {cpf}</Text>
@@ -34,14 +41,16 @@ export default function Cliente({ id, nome, cpf, saldo }: PropCliente) {
 
 const styles = StyleSheet.create({
   card: {
-    backgroundColor: '#f2f2f2',
+   backgroundColor: '#64c7e7',
     padding: 15,
-    borderRadius: 10,
+    borderRadius: 20,
     marginVertical: 8,
     width: '90%',
     alignSelf: 'center',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.2,
+    alignItems: 'center',
+   
   },
   text: {
     fontSize: 16,
@@ -62,7 +71,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   btnEditar: {
-    backgroundColor: '#2980b9',
+    backgroundColor: '#309a7eff',
     padding: 10,
     borderRadius: 8,
     flex: 1,
@@ -70,7 +79,17 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   btnText: {
-    color: '#fff',
+    color: '#ffffffff',
     fontWeight: 'bold',
   },
+  imgUsuario: {
+    width: 100,
+    height: 100,
+    marginBottom: 10,
+   alignItems:'center',
+  },
+
+ 
+
+  
 });

@@ -1,89 +1,99 @@
-import React from 'react';
 import { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, ImageBackground, FlatList } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import { View, FlatList, Text, StyleSheet, TouchableOpacity, ImageBackground } from 'react-native';
 
-import api from  '../compomentes/Api';
+import Cliente from '../compomentes/Cliente';
 
-import Cliente from  '../compomentes/Cliente';
+import api from '../compomentes/Api';
 
-export default function ListarCliente() {
-  const [dados, setDados] = useState <any[]>([]);
+export default function ListarClientes() {
 
-  async function BuscaCliente(){
-    const resposta = await api.get('cliente');
-    setDados(resposta.data);
+    const [dados, setDados] = useState<any[]>([]);
 
-  }
+    async function buscaClientes(){
+        const resposta = await api.get('clientes');
+        setDados(resposta.data);
+        console.warn("tetse");
+    }
 
-  useEffect(()=>{
-    BuscaCliente()}); // falta a o flatlist 
-
-  return (
-    <View style={styles.container}>
+    useEffect(
+        ()=>{
+            buscaClientes();
+        }
+    );
+ return (
+    <>
+    
       <ImageBackground
-        source={require('../assets/img/backV01.jpg')}
-        style={styles.imgFundo}
-        imageStyle={styles.opacityImage}
-      >
-        <TouchableOpacity
-          style={styles.btnCad}
-          
-        >
-          <Text style={styles.cadastrar}>Cadastrar novo Cliente</Text>
-        </TouchableOpacity>
+      source={require('../assets/img/globoback.jpg')}
+      style={styles.imgFundo}
+      imageStyle={styles.opacityImage}
+      />
 
-        <View>
-          <Text style={styles.listar}>Listar Cliente</Text>
-
-          
-
-          
-          
-
-          
+        <View style={styles.bloco}>
+            <TouchableOpacity style={styles.btn}>
+                <Text style={styles.txtBtn}>Cadastrar Novo Cliente</Text>
+            </TouchableOpacity>
         </View>
-        
-      </ImageBackground>
 
-      
+        <View style={styles.bloco}>
+            <Text style={styles.titulo}> Lista de Clientes </Text>
 
-    </View>
+            <FlatList 
+                data={dados}
+                keyExtractor={(item)=>item.id}
+                renderItem={({item})=><Cliente nome={item.nome} cpf={item.cpf} saldo={item.saldo} id={item.id}/>}
+                style={styles.lista}
+            />
+
+        </View>       
+    </>   
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
+  titulo:{
+    fontSize:20,
+    fontWeight:'bold',
+    textAlign:'center',
+    marginTop:20,
+    color: 'white',
+   textDecorationLine: 'underline'
+    
+    
   },
-  imgFundo: {
-    flex: 1,
-    resizeMode: 'cover', 
-    justifyContent: 'center',
-    alignItems: 'center',
+  btn:{
+    backgroundColor:'#3e9bddff',
+    marginLeft:'10%',
+    marginRight:'10%',
+    marginTop:20,
+    padding:20,
+    borderRadius:20,
+    textAlign:'center',
+    
+    
   },
-  opacityImage: {
-    opacity: 0.3, 
+  txtBtn:{
+    textAlign:'center',
+    fontSize:20,
+    color: 'white',
   },
-  btnCad: {
-    backgroundColor: 'purple',
-    width: '80%',
-    padding: 15,
-    marginVertical: 10,
-    borderRadius: 20,
+  bloco:{
+    width:'100%',
+    backgroundColor: '#3a67a2', // aqui o fundo
     alignItems: 'center',
     
   },
-  cadastrar: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    color: 'white',
+  lista:{
+    width:'80%',
+    height:'70%',
+    
   },
-  listar: {
-    fontSize: 30,
-    fontWeight: 'bold',
-    color: 'black',
-    marginTop: 20,
-    textAlign: 'center',
+  imgFundo: {
+    width: '100%',
+    height: 50,
+    justifyContent: 'center',
+  },
+  opacityImage: {
+    opacity: 0.8,
   },
 });

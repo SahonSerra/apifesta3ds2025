@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, TouchableOpacity, ImageBackground } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, ImageBackground, Image } from 'react-native';
 
 import { useNavigation } from '@react-navigation/native'; 
 
@@ -12,12 +12,14 @@ export default function Home() {
     <View style={styles.container}>
 
       <ImageBackground
-        source={require('../assets/img/backV02.jpg')}
+        source={require('../assets/img/globo02.jpg')}
         style={styles.imgFundo}
         imageStyle={styles.opacityImage}
         
       >
-        <Text style={styles.titulo}>App Festa</Text>
+          
+        
+        <Text style={styles.titulo}>Gerenciador Festas</Text>
 
         <View style={styles.btnContainer}>
           <TouchableOpacity style={styles.btnClie}
@@ -26,7 +28,8 @@ export default function Home() {
             <Text style={styles.cliente}>Clientes</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity style={styles.btnUsi}>
+          <TouchableOpacity style={styles.btnUsi}
+         >
             <Text style={styles.usuario}>Usuários</Text>
           </TouchableOpacity>
         </View>
@@ -39,6 +42,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     
+    
   },
 
   imgFundo: {
@@ -47,15 +51,18 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 
+
   opacityImage: {
-    opacity: 0.5,
+    opacity: 0.3,
   },
 
   titulo: {
-    fontSize: 40,
+    fontSize: 35,
     fontWeight: 'bold',
     color: 'black',
-    marginBottom: 30,
+    marginBottom: 200,
+   
+    
   },
 
   btnContainer: {
@@ -90,5 +97,10 @@ const styles = StyleSheet.create({
     marginVertical: 10,
     borderRadius: 20,
      
+  },
+    img: {
+    width: 100,
+    height: 100,
+    marginBottom: 20,
   },
 });

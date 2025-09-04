@@ -6,12 +6,16 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import Home from './telas/Home';
 import ListarCliente from  './telas/ListarCliente';
+
+
 //import CadastrarCliente from './telas/CadastrarCliente';
 
 const RootStack = createNativeStackNavigator({
   screens: {
     Home: Home,
     ListarCliente:ListarCliente,
+    
+    
     //CadastrarCliente:CadastrarCliente,
     
 
